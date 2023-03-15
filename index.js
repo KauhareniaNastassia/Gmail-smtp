@@ -1,8 +1,8 @@
 const express = require('express')
 const nodemailer = require("nodemailer");
 const port = process.env.PORT || 3010
-const smtp_login = process.env.SMTP_LOGIN || 't53035877@gmail.com'
-const smtp_password = process.env.SMTP_LOGIN || 'gfsxbwywahhiozwm'
+const smtp_login = process.env.SMTP_LOGIN
+const smtp_password = process.env.SMTP_PASSWORD
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
