@@ -1,6 +1,8 @@
 const express = require('express')
 const nodemailer = require("nodemailer");
-const port = 3010
+const port = process.env.PORT || 3010
+const smtp_login = process.env.SMTP_LOGIN || 't53035877@gmail.com'
+const smtp_password = process.env.SMTP_LOGIN || 'gfsxbwywahhiozwm'
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
@@ -10,18 +12,10 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 let transporter = nodemailer.createTransport({
-    /*host: "smtp.ethereal.email",
-    port: 587,
-    secure: false, // true for 465, false for other ports*/
     service: 'gmail',
-    /*secure: false,
-    port: 25,
-    tls: {
-        rejectUnauthorized: false
-    },*/
     auth: {
-        user: 't53035877@gmail.com', // generated ethereal user
-        pass: 'gfsxbwywahhiozwm', // generated ethereal password
+        user: smtp_login, // generated ethereal user
+        pass: smtp_password, // generated ethereal password
     },
 });
 
@@ -39,7 +33,6 @@ app.post('/sendMessage', async (req, res) => {
         from: 'PORTFOLIO', // sender address
         to: "kavgorenya@gmail.com", // list of receivers
         subject: "Message from portfolio", // Subject line
-        //text: "Hello world?", // plain text body
         html: `<b>Сообщение от Portfolio</b>
                <div>Name: ${name}</div>
                <div>Email: ${email}</div>
